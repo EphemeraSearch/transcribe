@@ -13,7 +13,7 @@ var userToken = 'd8e47df490c9a13ac4f098a642f338d1161fb6b7';
     // var urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true';
     // var urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&expand=images';
     var urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&expand=images&limit=100';
-    
+
     // if (which == 'all') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true'; }
     if (which == 'all') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&expand=images&limit=100'; }
     // if (which == 'all') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&expand=images&limit=100'; }
@@ -43,7 +43,7 @@ var userToken = 'd8e47df490c9a13ac4f098a642f338d1161fb6b7';
             for (var i = 0; i < x.length; i++) {
                 // console.log(x[i].images[0].thumbnail_300);
                 // console.log(x[i].images.length);
-                
+
                 if (x[i].images.length == 0) {                                                                              // TODO: Add ,places
                     my_html += "<img id='" + x[i].pk + "' class='active-cards' detail='" + x[i].detail + '?expand=languages,images,places,tags,ephemeronlinks' + "' src='../assets/images/postcard_thumb_placeholder.jpg' width='250px' height='165px' onclick='displaySelectedPostcard(this)'>";
                 } else {
@@ -63,7 +63,7 @@ var userToken = 'd8e47df490c9a13ac4f098a642f338d1161fb6b7';
 /*===================================================================================================================================
     Postcard: Display Selected Postcard
 ===================================================================================================================================*/
-var postcardData = null; // global postcard info 
+var postcardData = null; // global postcard info
 var postcardDetail = null; // global postcard link
 var postcardDetailEx = null;
 var postcardPk = null; // global postcard pk
@@ -142,7 +142,7 @@ function displaySelectedPostcard(which) {
                 post_backside = "<img id='edited_postcard' detail='" + x.pk + "' src='" + x.images[1].file + "'>";
                 post_frontside = "<img id='edited_postcard_back' detail='" + x.pk + "' src='" + x.images[0].file + "'>";
             }
-            
+
             // console.log(latestText);
             // console.log(x.pictures[0].latest_transcription.text);
 
@@ -183,7 +183,7 @@ function displaySelectedPostcard(which) {
                 //     }
                 // }
 
-                
+
                 // check checkbox / show field
                 // $('#languages_chosen').removeClass('hide');
                 // $('#languages-unreadable-box').removeClass('hide');
@@ -192,7 +192,7 @@ function displaySelectedPostcard(which) {
             // console.log($('#languages')[0].parentElement);
 
 
-            
+
             var formBlank = null;
             if (x.tx_status_writing == 'not_present') {
                 $('#blank-postcard').attr('checked', true);
@@ -211,7 +211,7 @@ function displaySelectedPostcard(which) {
 
 
 
-            
+
         // ------ dates ------
             var datesHidden = null;
             var datesLegible = null;
@@ -229,7 +229,7 @@ function displaySelectedPostcard(which) {
             if (x.tx_status_dates == 'in_progress') {  datesHidden = false; datesLegible = true; } // field has been worked on
             if (x.tx_status_dates == 'completed') { // field has content
                 datesHidden = false;
-                datesLegible = true; 
+                datesLegible = true;
                 $('#dates-box').addClass('completed');
             } else {
                 $('#dates-box').removeClass('completed');
@@ -290,7 +290,7 @@ function displaySelectedPostcard(which) {
 
             if (x.tx_status_names == 'unknown') { namesHidden = false; namesLegible = true; } // field hasn't been started yet
             if (x.tx_status_names == 'not_present') { namesHidden = true; namesLegible = true; } // field has been toggled off (no content)
-            if (x.tx_status_names == 'illegible') {  namesHidden = false; namesLegible = false; } // field has been marked illegible (unreadable)            
+            if (x.tx_status_names == 'illegible') {  namesHidden = false; namesLegible = false; } // field has been marked illegible (unreadable)
             if (x.tx_status_names == 'in_progress') {  namesHidden = false; namesLegible = true; } // field has been worked on
             if (x.tx_status_names == 'completed') { namesHidden = false; namesLegible = true; } // field has content
 
@@ -318,9 +318,9 @@ function displaySelectedPostcard(which) {
                 $('#recipient-name-unreadable').removeAttr("checked", true);
             }
 
-            
 
-            
+
+
 
 
 
@@ -330,8 +330,8 @@ function displaySelectedPostcard(which) {
         // ------ recipient-location ------
             var chosenChildren = $('#recipient-chosen-choices')[0].childNodes;
             var recipPlaceCompleted = false;
-            // console.log('tx_status_places: ' + x.tx_status_places);        
-            
+            // console.log('tx_status_places: ' + x.tx_status_places);
+
             if (x.places.length == 0) { // no places
                 for (var i = 0; i < chosenChildren.length; i++) {
                     if (chosenChildren[i].className == 'search-choice') {
@@ -351,7 +351,7 @@ function displaySelectedPostcard(which) {
                     // var placeStr = p[i].split('/'); // convert l (http://ephemera-pw-staging.herokuapp.com/api/languages/12/) into array
                     // var placePk = placeStr[5]; // assign langPk to link's pk number (12)
                     // $('#recipient-chosen-choices').prepend("<li class='search-choice' detail='" + placeArray[placePk].place_id + "'><span>" + placeArray[placePk].name + "</span><a class='search-choice-close' onclick='searchChoiceClose(this)'></a></li>") // append li into ul
-                    
+
                 // }
                 for (var i = 0; i < eLinks.length; i++) {
                     if (eLinks[i].place_category == 'destination') {
@@ -375,12 +375,12 @@ function displaySelectedPostcard(which) {
             }
 
 
-            
+
         // ------ postmark-from ------
             var chosenChildrenPost = $('#postmark-chosen-choices')[0].childNodes;
             var postPlaceCompleted = false;
-            // console.log('tx_status_places: ' + x.tx_status_places);        
-            
+            // console.log('tx_status_places: ' + x.tx_status_places);
+
             if (x.places.length == 0) { // no places
                 for (var i = 0; i < chosenChildrenPost.length; i++) {
                     if (chosenChildrenPost[i].className == 'search-choice') {
@@ -395,7 +395,7 @@ function displaySelectedPostcard(which) {
                     }
                 }
 
-                
+
                 for (var i = 0; i < eLinks.length; i++) {
                     // var placeStr = p[i].split('/'); // convert l (http://ephemera-pw-staging.herokuapp.com/api/languages/12/) into array
                     // var placePk = placeStr[5]; // assign langPk to link's pk number (12)
@@ -439,14 +439,14 @@ function displaySelectedPostcard(which) {
                     $('#message-text').val(latestTextBack.text);
                     $('#message-back-needs-work').prop("checked", true);
                 }
-    
+
                 if (messageStatusBack == 'not_started') {
                     $('#message-text-checkbox').prop("checked", true);
-                    $('#message-back-unreadable-box').prop("checked", false);                        
+                    $('#message-back-unreadable-box').prop("checked", false);
                     $('#message-back-needs-work').prop("checked", false);
                     $('#message-back-complete').prop("checked", false);
                 }
-                if (messageStatusBack == 'illegible') { 
+                if (messageStatusBack == 'illegible') {
                     $('#message-back-unreadable').prop("checked", true);
                     $('#message-text').addClass('disable');
                 } else {
@@ -454,7 +454,7 @@ function displaySelectedPostcard(which) {
                 }
                 if (messageStatusBack == 'in_progress') { $('#message-back-needs-work').prop("checked", true); }
                 if (messageStatusBack == 'completed') {
-                    $('#message-back-complete').prop("checked", true); 
+                    $('#message-back-complete').prop("checked", true);
                     messageBackComplete = true;
                 }
                 if (messageStatusBack == 'not_present') {
@@ -472,7 +472,7 @@ function displaySelectedPostcard(which) {
                     $('#message-text-checkbox').prop("checked", true);
                 }
 
-            } else { 
+            } else {
                 $('#message-text').val('');
 
                 // check checkbox / show fields
@@ -485,7 +485,7 @@ function displaySelectedPostcard(which) {
                 // $('#message-text')[0].parentElement.classList.add('completed');
                 $('#message-text-box').addClass('completed');
             } else {
-                // $('#message-text')[0].parentElement.classList.remove('completed');                
+                // $('#message-text')[0].parentElement.classList.remove('completed');
                 $('#message-text-box').removeClass('completed');
             }
 
@@ -512,7 +512,7 @@ function displaySelectedPostcard(which) {
 
                 if (messageStatusFront == 'not_started') {
                     $('#message-text-front-checkbox').prop("checked", true);
-                    $('#message-front-unreadable-box').prop("checked", false);                        
+                    $('#message-front-unreadable-box').prop("checked", false);
                     $('#message-front-needs-work').prop("checked", false);
                     $('#message-front-complete').prop("checked", false);
                 }
@@ -577,7 +577,7 @@ function displaySelectedPostcard(which) {
                     // var tagPk = tagStr[5]; // assign tagPk to link's pk number (4)
                     // console.log(tagPk); // 4
                     $("#tags option[value=" + t[i].pk + "]").attr('selected','selected');
-                    $("#tags").trigger("chosen:updated");    
+                    $("#tags").trigger("chosen:updated");
                 }
             }
             // console.log($('#tags')[0].parentElement);
@@ -630,7 +630,7 @@ function postcardToggleSide(which) {
 
         if ($('#message-text-box').hasClass('not-present')) {
             $('#message-text-box').removeClass('not-present');
-            $('#message-text-toggle').removeClass('disable');            
+            $('#message-text-toggle').removeClass('disable');
         } else {
             if ($('#message-text-checkbox')[0].checked == true) {
                 // enable postcard back message text
@@ -641,7 +641,7 @@ function postcardToggleSide(which) {
                 $('#message-text').removeClass('disable');
             }
             // console.log($('#message-back-unreadable'));
-            
+
             $('#message-text-toggle').removeClass('disable');
         }
 
@@ -673,7 +673,7 @@ function postcardToggleSide(which) {
         $('#message-text-box-buttons').addClass('hide');
         $('#message-text').addClass('disable');
         $('#message-text-toggle').addClass('disable');
-        
+
         if ($('#message-text-front-checkbox')[0].checked == true) {
             // enable postcard front message text
             $('#message-text-front-box-buttons').removeClass('hide');
@@ -682,8 +682,8 @@ function postcardToggleSide(which) {
             $('#message-text-front').removeClass('disable');
         }
         $('#message-text-front-toggle').removeClass('disable');
-        
-        
+
+
 
         postcardSide = 'front';
     }
@@ -732,7 +732,7 @@ function updateTally(which) {
     }
 
     // console.log(which);
-    // if postcard is blank 
+    // if postcard is blank
     if (which == 'blank') {
         if ($('#tally-total').hasClass('card-blank')) {
             $('#tally-total').removeClass("card-blank");
@@ -786,7 +786,7 @@ $(".form-field-input :input").each(function(){
             console.log('Data: ' + inputVal + ' was received (^o^)');
             console.log(input);
             console.log(inputId);
-            
+
             if (inputId == 'languages') { inputCheck = null; inputItem = 'languages';}
 
             if (inputId == 'dates') {
@@ -819,7 +819,7 @@ $(".form-field-input :input").each(function(){
                 postcardId = postcardBackId;
                 $('#message-back-needs-work').prop("checked", true);
                 submitTranscriptionStatus('in_progress');
-                    
+
                 // inputData.image_id = postcardId;
                 inputData.image = postcardId;
                 inputData.text = inputVal;
@@ -843,7 +843,7 @@ $(".form-field-input :input").each(function(){
                 // postcardDetail = 'http://ephemerasearch-staging.herokuapp.com/api/transcriptions/add/';
                 callType = 'POST';
             }
-                
+
             if (inputVal != '' && inputVal != null && inputCheck != null) {
                 if (inputParent.classList.contains('completed')) {
                     console.log('Input has already been counted (0ᴗ0)!');
@@ -925,7 +925,7 @@ function setTxStatus(which) {
         }
     }
     targetData.item = which;
-    
+
 
     console.log(targetData);
     // var statusCheck = null;
@@ -956,7 +956,7 @@ function setTxStatus(which) {
 =============================================================================================*/
 function submitTranscriptionStatus(which) {
     var postcardSideId = null;
-    var postcardMessage = null;    
+    var postcardMessage = null;
     var postcardMessageVal = null;
     var postcardMessageStr = null;
     console.log('');
@@ -1009,7 +1009,7 @@ function submitTranscriptionStatus(which) {
                 }
                 if (postcardSide == 'front') {
                     $('#message-front-err').css('display', 'none');
-                }        
+                }
             },
             error: function(data, errorThrown) {
                 //alert('request failed :'+errorThrown);
@@ -1034,7 +1034,7 @@ function submitTranscriptionStatus(which) {
             $('#message-front-err').html('Message text: (front) is empty');
             $('#message-front-err').css('display', 'block');
         }
-        
+
     }
 }
 
@@ -1061,7 +1061,7 @@ $(window).load(function getPlaces(){
             }
             // console.log(placeArray[18]);
             // console.log(placeArray[18].name);
-            
+
         },
         error: function(data, errorThrown) {
             console.log('function getPlaces failed');
@@ -1088,8 +1088,8 @@ $(window).load(function getLangauges(){
             // console.log(x);
             for (var i = 0; i < x.length; i++) {
                 // console.log(x[i]);
-				langArray.push({pk: x[i].pk, get_language_display: x[i].get_language_display});
-				moreUsefulLangArray[x[i].pk] = x[i].get_language_display;
+                langArray.push({pk: x[i].pk, get_language_display: x[i].get_language_display});
+                moreUsefulLangArray[x[i].pk] = x[i].get_language_display;
             }
             // console.log(moreUsefulLangArray);
             appendLanguages(langArray);
@@ -1107,16 +1107,16 @@ function appendLanguages(which){
     // console.log(Object.keys(which));
     // console.log($('#languages'));
     /*
-	for (var i=1; i<Object.keys(which).length; i++) {
-		// console.log(Object.keys(which)[i] + which[i]);
-		let language_pk = Object.keys(which)[i];
-		let language_name = which[i];
+    for (var i=1; i<Object.keys(which).length; i++) {
+        // console.log(Object.keys(which)[i] + which[i]);
+        let language_pk = Object.keys(which)[i];
+        let language_name = which[i];
         $('#languages').append("<option value='" + language_pk + "'>" + language_name + "</option>");
     }
     */
     for (var i = 0; i < which.length; i++) {
         let language_pk = which[i].pk;
-		let language_name = which[i].get_language_display;
+        let language_name = which[i].get_language_display;
         $('#languages').append("<option value='" + language_pk + "'>" + language_name + "</option>");
         // console.log(which[i]);
     }
@@ -1162,7 +1162,7 @@ $('.languages').on('change', function(evt, params) {
 
         // console.log(pCard);
         selectedName = 'language';
-            
+
         // console.log(postcardDetail);
         // console.log(selectedAction);
         var langCheck = null;
@@ -1172,7 +1172,7 @@ $('.languages').on('change', function(evt, params) {
                 url: postcardDetail + selectedAction + '/',
                 // url: 'http://ephemerasearch-staging.herokuapp.com/api/ephemeronlinks/',
                 // url: 'http://ephemerasearch-staging.herokuapp.com/api/ephemeronlinks/' + selectedAction + '/',
-                
+
                 type: "POST",
                 // type: "PATCH",
                 // type: "PUT",
@@ -1192,7 +1192,6 @@ $('.languages').on('change', function(evt, params) {
                 }
             });
         }
-        
 
     } else {
         console.log('failed: no postcard chosen (x_x)');
@@ -1220,8 +1219,8 @@ $(window).load(function getTags(){
             // console.log(x);
             for (var i = 0; i < x.length; i++) {
                 // console.log(x[i]);
-				tagArray.push({pk: x[i].pk, name: x[i].name});
-				// moreUsefulLangArray[x[i].pk] = x[i].name;
+                tagArray.push({pk: x[i].pk, name: x[i].name});
+                // moreUsefulLangArray[x[i].pk] = x[i].name;
             }
             // console.log(moreUsefulLangArray);
             appendTags(tagArray);
@@ -1238,7 +1237,7 @@ $(window).load(function getTags(){
 function appendTags(which){
     for (var i = 0; i < which.length; i++) {
         let tag_pk = which[i].pk;
-		let tag_name = which[i].name;
+        let tag_name = which[i].name;
         $('#tags').append("<option value='" + tag_pk + "'>" + tag_name + "</option>");
         // console.log(which[i]);
     }
@@ -1377,7 +1376,6 @@ function initAutocomplete() {
     // When the user selects an address from the drop-down, populate the address fields in the form.
     // autocomplete.addListener('place_changed', fillInAddress('autocomplete'));
     // autocomplete2.addListener('place_changed', fillInAddress('autocomplete2'));
-    
 
     // autocomplete.addListener('place_changed', fillInAddress, function() {
     //     inputHidden = 'recipient-location-id';
@@ -1410,7 +1408,7 @@ function fillInAddress(which) {
     // var selectedAction = 'add';
     // var selectedAction = 'set_category';
     var selectedAction = 'set';
-    
+
     var textVal = '';
     var addPlace = false;
 
@@ -1422,7 +1420,7 @@ function fillInAddress(which) {
     console.log('');
     console.log('------- fillInAddress -------');
     console.log(which);
-    
+
     if (which == 'recipient-location-id') {
         place = autocomplete.getPlace();
         textVal = $('#recipient-location').val() // get value from input field
@@ -1482,7 +1480,7 @@ function fillInAddress(which) {
     console.log('');
     console.log('--place call--');
     console.log(postcardDetail);
-    
+
     // addPlace = false;
     if (postcardDetail != null && addPlace == true) {
         $.ajax({
@@ -1501,7 +1499,7 @@ function fillInAddress(which) {
                         $(textBoxParent).addClass('completed')
                         formTallyTotal++
                         updateTally();
-                    } 
+                    }
                 } else {
                     if ($(textBoxParent).hasClass('completed')) {
                         $(textBoxParent).removeClass('completed')
@@ -1519,18 +1517,18 @@ function fillInAddress(which) {
     } else {
         console.log('failed: no postcard chosen (x_x)');
     }
-  
+
     for (var component in componentForm) {
         $('#' + component).val('');
         // document.getElementById(component).disabled = false;
         // $('#' + component).disabled(false);
     }
-  
+
     // Get each component of the address from the place details, and then fill-in the corresponding field on the form.
     for (var i = 0; i < place.address_components.length; i++) {
       var addressType = place.address_components[i].types[0];
       if (componentForm[addressType]) {
-        
+
         var val = place.address_components[i][componentForm[addressType]];
         $('#' + addressType).val('');
         // document.getElementById(addressType).value = val;
@@ -1572,7 +1570,7 @@ function searchChoiceClose(which) {
             datatype: "json",
             headers: {'Authorization': 'Token ' + userToken},
             data: {content_type: selectedName, place_id: placeId},
-            
+
             success: function (response) {
                 if (inputChild.length == 5){
                     console.log($(textBoxParent));
@@ -1609,7 +1607,7 @@ function tagTranFormFields(which) {
     console.log('');
     console.log('---------- tagTranFormFields ----------');
     var formTab = document.getElementsByClassName('tag-transcribe-mode');
-    
+
 
     console.log(which + ' was chosen');
     for (var i = 0; i < formTab.length; i++) {
@@ -1621,9 +1619,9 @@ function tagTranFormFields(which) {
     }
 
     formFieldTotal = 10;
-    for (var i = 0; i < formField.length; i++) { 
+    for (var i = 0; i < formField.length; i++) {
         formField[i].classList.remove('display-input');
-        
+
         // console.log(formField[i]);
         if (which == 'default') {
             formField[i].classList.add('display-input'); // all
@@ -1654,7 +1652,7 @@ function tagTranFormFields(which) {
     }
 
     // field heading
-    for (var i = 0; i < formHeading.length; i++) { 
+    for (var i = 0; i < formHeading.length; i++) {
         formHeading[i].classList.remove('display-heading');
         if (which == 'default') {
             formHeading[i].classList.add('display-heading'); // all
@@ -1723,8 +1721,8 @@ function formFieldToggle(which) {
 
     var messageCheck = null;
     var stopCall = null;
-    
-    
+
+
     // if (targetId == 'languages-checkbox') { targetInput='#languages_chosen'; targetCheckBox='#languages-unreadable-box'; targetField='languages'; }
     if (targetId == 'dates-checkbox') { targetInput='#dates'; targetCheckBox='#dates-unreadable-box'; targetField='dates'; }
     // if (targetId == 'postmark-date-checkbox') { targetInput='#postmark-date'; targetCheckBox='#postmark-date-unreadable-box'; targetField='postmark-date'; }
@@ -1739,8 +1737,8 @@ function formFieldToggle(which) {
         targetCheckBox='#message-text-box-buttons';
         targetField='message-text';
         stopCall = true;
-        
-        messageCheck = $('#message-text-checkbox')[0].checked;        
+
+        messageCheck = $('#message-text-checkbox')[0].checked;
         if (messageCheck == false) {
             submitTranscriptionStatus('not_present');
         }
@@ -1751,36 +1749,36 @@ function formFieldToggle(which) {
         targetField='message-text-front';
         stopCall = true;
 
-        messageCheck = $('#message-text-front-checkbox')[0].checked;        
+        messageCheck = $('#message-text-front-checkbox')[0].checked;
         if (messageCheck == false) {
             submitTranscriptionStatus('not_present');
         }
     }
-    
+
     console.log('(O-o) toggle | Target Input: ' + targetInput + ' | & | ' + 'Target CheckBox: ' + targetCheckBox + ' |');
-    
+
     if (targetChecked == false) {
     // $(targetInput).toggle();
     // $(targetCheckBox).toggle();
     $(targetInput).addClass('hide');
     $(targetCheckBox).addClass('hide');
-    
+
     targetParent.classList.add('hidden');
     updatedFieldTotal--
-    
+
     console.log($(which));
     // console.log(postcardDetail);
-    
+
     var targetPostcardId = postcardDetail.split('/'); // gets pk of postcard from detail link
     var targetData = {};
-    
+
     targetData.item = targetField;
     targetData.status = 'not_present';
-    
+
     // console.log(targetPostcardId[5]);
     console.log(targetData);
     // console.log(postcardData);
-    
+
     // var targetCheck = null;
     // if (targetCheck == null) {
         if (postcardDetail != null && targetChecked == false && stopCall != true) {
@@ -1827,7 +1825,7 @@ function formFieldUnreadable(which) {
     var targetContext = $(which).context;
     var targetId = targetContext.id;
     var targetParent = targetContext.parentElement.parentElement.parentElement;
-    var targetChecked = targetContext.checked;    
+    var targetChecked = targetContext.checked;
 
     // if (targetId == 'languages-unreadable') { targetInput='#languages_chosen'; targetCheckBox='#languages-toggle-box'; }
     if (targetId == 'dates-unreadable') { targetInput='#dates'; targetCheckBox='#dates-toggle-box'; targetField = 'dates'; }
@@ -1844,7 +1842,7 @@ function formFieldUnreadable(which) {
         console.log('(-_-) disable | Target Input: ' + targetInput + ' | & | ' + 'Target CheckBox: ' + targetCheckBox + ' |');
         var targetPostcardId = postcardDetail.split('/');
         var targetData = {};
-        
+
         $(targetInput).addClass('disable');
         $(targetCheckBox).addClass('disable');
 
@@ -1893,19 +1891,19 @@ function formFieldUnreadable(which) {
 function fieldMarkEmpty() {
     console.log('');
     console.log('----- Form Field: Mark Empty -----');
-    // console.log(which);    
+    // console.log(which);
     // console.log(postcardDetail);
-    
+
     var targetPostcardId = postcardDetail.split('/'); // gets pk of postcard from detail link
     var targetData = {};
-    
+
     targetData.item = targetField;
     targetData.has_targetField  = true;
 
     // console.log(targetPostcardId[5]);
     console.log(targetData);
     console.log(postcardData);
-    
+
     // var targetCheck = null;
     // if (targetCheck == null) {
     if (postcardDetail != null) {
@@ -1934,7 +1932,7 @@ function completeMessageText(which) {
     var targetRadio = '';
     var targetHeading = '';
     var targetCheck = null;
-    
+
     if (which == 'back') { targetInput = '#message-text'; targetRadio = '#message-back-needs-work-box'; targetHeading = '#message-text-top'; }
     if (which == 'front') { targetInput = '#message-text-front'; targetRadio = '#message-front-needs-work-box'; targetHeading = '#message-text-front-top';}
 
@@ -1960,7 +1958,7 @@ function nextPostcard() {
             console.log(x[i]);
             console.log('next postcard');
             console.log(x[i+1]);
-            
+
             if (i != x.length) {
                 console.log(i);
                 x[i].classList.remove('selected');
@@ -2126,13 +2124,13 @@ function savePostcard() {
         var postcardPk = y.getAttribute('detail');
         console.log('Postcard PK =' + postcardPk);
     }
-    
-    
+
+
     console.log('postcardPk= ' + postcardPk);
 
     form_languages = $('#languages').val();
     console.log('form_languages= ' + form_languages);
-	form_date = $('#date').val();
+    form_date = $('#date').val();
     console.log('message text:', form_message_text);
 
     if (postcardPk != undefined && form_message_text) {
@@ -2154,5 +2152,5 @@ function savePostcard() {
     } else {
         console.log('--No Postcard was chosen--');
     }
-    
+
 }
