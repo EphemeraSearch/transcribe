@@ -1,5 +1,5 @@
 <?
-include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php"); 
+include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
 ?>
 
         <div class="content-main tagging-transcribing">
@@ -28,9 +28,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
             </div><!--closes tagging-transcribing-top-->
 
 
-
-
-
             <div id="filter-queue" class="filter-queue fq-toggled">
                 <img src="<?= '../assets/images/filter_queue_toggled.png' ?>" class="filter-queue-side-img" onclick="filterQueueToggle()">
                 <div class="recently-transcribed-box">
@@ -52,16 +49,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                 </div><!--closes currently-transcribed-->
 
 
-
-
-
-
-
-
-
-
-
-
                 <div class="up-next">
                     <ul>
                         <li>Up next:</li>
@@ -71,21 +58,8 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                         <li><a href="#" class="up-next-selector" onclick="upNextLoadPostcards('languages'); upNextSelectorActiveState(this); return false;">Tag languages</a></li>
                     </ul>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <i class="fa fa-times x-icon" onclick="filterQueueToggle()"></i>
-                    <div class="up-next-content">                    
+                    <div class="up-next-content">
                         <div class="transcription-filter">
                             <p>Transcription Filter:</p>
                             <input type="text" name="tag-location" id="tag-location" value="<?= 'France' ?>"><br>
@@ -96,25 +70,18 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                             <i id="arr-left" class="fa fa-angle-left arr-left disable" onclick="showCards(-1)"></i>
                                 <div class="loader"></div>
                             <div id="up-next-postcards" class="up-next-postcards" style="right:0;">
-                                
+
                             </div><!--closes up-next-postcards-->
                             <i id="arr-right" class="fa fa-angle-right arr-right" onclick="showCards(1)"></i>
                         </div><!--closes up-next-postcards-box-->
                     </div><!--closes up-next-content-->
                 </div><!--closes up-next-->
-                
+
             </div><!--closes filter-queue-->
 
             <p class="select-card-text">--Please select a Postcard to begin--</p>
 
             <div class="content-mid-box">
-
-
-
-
-
-
-
 
                 <div id="tag-transcribe" class="tag-transcribe">
                     <img src="<?= '../assets/images/filter_queue.png' ?>" onclick="filterQueueToggle()">
@@ -126,27 +93,14 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                         <li><a href="#" class="tag-languages tag-transcribe-mode" onclick="tagTranFormFields('languages'); return false;">Tag languages</a></li>
                     </ul>
                 </div><!--closes tag-transcribe-->
-                
-
 
                 <div id="postcardDetailEx" class="postcardDetailEx" style="margin-left: 22px;"></div>
-
-
-
-
 
                 <div id="postcard-top" class="postcard-top">
                     <ul class="postcard-tabs">
                         <li id="postcard-backside-tab" class="active" onclick="postcardToggleSide('back')">Back Side</li>
                         <li id="postcard-frontside-tab" class="" onclick="postcardToggleSide('front')">Front Side</li>
                     </ul><!--closes postcard-tabs-->
-
-
-
-
-                    
-
-
 
                     <div class="postcard-toolbar">
                         <i class="fa fa-compress toolbar-icon"></i>
@@ -167,7 +121,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
 
                     <div class="forms-box">
 
-                    <!-- Postcard is Blank --> 
+                    <!-- Postcard is Blank -->
                         <div class="form-field-checkboxes">
                             <div class="field-check-box blank">
                                 <input type="checkbox" name="blank-postcard" id="blank-postcard" onclick="postcardBlankToggle()">
@@ -181,7 +135,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                             <h4 class="form-field-heading display-heading">Details:</h4>
 
                         <!-- Language(s) -->
-                            
+
                             <div id="languages-box" class="form-field-input display-input">
 
                                 <!--
@@ -202,7 +156,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                                 <label for="languages-checkbox">Language(s):</label>
                                 <select data-placeholder="Choose a language..." name="languages" multiple id="languages" class="chosen-select languages form-input chosen-box"></select>
                             </div><!--closes languages-box-->
-                            
+
 
 
                         <!-- Date (as close as possible) -->
@@ -226,10 +180,10 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                                 <input type="text" class="form-input" name="dates" id="dates" value="">
                                 <span id="dates-err" class="err-message" style="display:none;"></span>
                             </div><!--closes dates-box-->
-                            
 
 
-                        <!-- Postmark date 
+
+                        <!-- Postmark date
                             <div id="postmark-date-box" class="form-field-input display-input">
                                 <div class="form-field-checkboxes">
                                     <div id="postmark-date-toggle-box" class="field-check-box">
@@ -247,7 +201,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                                 <input type="text" name="postmark-date" id="postmark-date" class="needs-toggling toggled">
                             </div>
                         closes postmark-date-box-->
-                            
+
 
 
 
@@ -274,7 +228,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
 
                                 <input type="text" name="recipient-name" id="recipient-name" class="form-input">
                             </div><!--closes recipient-name-box-->
-                            
+
 
 
                         <!-- Card from (front side) -->
@@ -303,10 +257,10 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                                         <label for="recipient-location-unreadable">Illegible</label>
                                     </div>
                                 </div><!--closes form-field-checkboxes-->
-                                <!-- 
+                                <!--
                                 <input type="text" name="recipient-location" id="recipient-location" class="" placeholder="Enter your address" -->
-         <!-- onFocus="geolocate()"> 
-                                <input type="hidden" name="recipient-location-id" id="recipient-location-id"> 
+         <!-- onFocus="geolocate()">
+                                <input type="hidden" name="recipient-location-id" id="recipient-location-id">
                                 -->
                                 <div class="chosen-container chosen-container-multi chosen-box" title="" id="recipient_chosen" style="width: 160px;">
                                     <ul id="recipient-chosen-choices" class="chosen-choices">
@@ -350,7 +304,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                                     </div>
                                 </div><!--closes chosen-container-->
                             </div><!--closes postmark-from-box-->
-                            
+
 
                         <!-- Return address
                             <div id="return-address-box" class="form-field-input">
@@ -388,7 +342,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                                 </div>
 
                                 <input type="text" name="has-postmark" id="has-postmark" class="">
-                            </div> 
+                            </div>
                         closes has-postmark-box-->
 
 
@@ -418,25 +372,25 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
 
                                 <!-- <input type="text" name="has-postmark" id="has-postmark" class=""> -->
                             </div><!--closes has-postmark-box-->
-                            
+
 
                         </form><!--closes full-postcard-form-->
                         <div id="tally-total" class="tally-total"></div>
                     </div><!--closes forms-box-->
-                    
+
                 </div><!--closes content-mid-->
 
                 <div class="inputs-bottom">
                     <form id="message-text-box" class="bottom-textarea form-field-input display-input active">
-                        
-                        
-                        
 
-                        <!-- 
+
+
+
+                        <!--
                         onclick="submitTranscriptionStatus('no_text')"
                         onclick="submitTranscriptionStatus('not_started')"
                         onclick="submitTranscriptionStatus('in_progress')"
-                        onclick="submitTranscriptionStatus('completed')" 
+                        onclick="submitTranscriptionStatus('completed')"
                         -->
 
 
@@ -450,7 +404,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                                             <span class="checkbox-custom"></span>
                                             <label id="message-text-heading" for="message-text-checkbox">Message text (back):</label>
                                         </div>
-                                        <button id="message-back-button" class="message-text-button" onclick="postcardToggleSide('back'); return false;">Show Back</button>            
+                                        <button id="message-back-button" class="message-text-button" onclick="postcardToggleSide('back'); return false;">Show Back</button>
                                     </div>
                                 </div>
                             </div>
@@ -479,7 +433,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                                             <span class="checkbox-custom"></span>
                                             <label id="message-text-front-heading" for="message-text-front-checkbox">Message text (front):</label>
                                         </div>
-                                        <button id="message-front-button" class="message-text-button" onclick="postcardToggleSide('front'); return false;">Show Front</button>                                        
+                                        <button id="message-front-button" class="message-text-button" onclick="postcardToggleSide('front'); return false;">Show Front</button>
                                     </div>
                                 </div>
                             </div>
@@ -500,7 +454,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                         <select data-placeholder="Choose a tag..." name="tags" multiple id="tags" class="chosen-select tags form-item">
                             <option value=""></option>
                         </select>
-                        
+
 
                         <button id="search-btn" class="search-btn form-item">
                             <i class="fa fa-search"></i>
@@ -546,7 +500,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
 
                     <div class="buttons-bottom-right">
                         <!-- <button id="save-postcard" class="save-btn" onclick="formTallyTotal(); return false;">Save</button>closes save-btn  // savePostcard();  -->
-                        <button id="skip-postcard" class="skip-postcard-btn"><i class="fa fa-angle-double-left"></i> Skip Postcard</button><!--closes skip-postcard-btn -->                        
+                        <button id="skip-postcard" class="skip-postcard-btn"><i class="fa fa-angle-double-left"></i> Skip Postcard</button><!--closes skip-postcard-btn -->
                         <button id="next-postcard" class="next-btn ready" onclick="nextPostcard()">Next Postcard <i class="fa fa-angle-double-right"></i></button><!--closes save-btn -->
                     </div><!--closes buttons-bottom-right-->
                 </div><!--closes buttons-bottom-->
@@ -554,5 +508,5 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
         </div><!--closes content-main | tagging-transcribing-->
 
 <?
-include($_SERVER['DOCUMENT_ROOT'] . "/assets/footer.php"); 
+include($_SERVER['DOCUMENT_ROOT'] . "/assets/footer.php");
 ?>

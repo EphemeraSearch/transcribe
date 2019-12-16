@@ -7,25 +7,24 @@
 // var userToken = '02fb11b97a86020fb66d5afa52f3ba295dbc201e';
 var userToken = 'd8e47df490c9a13ac4f098a642f338d1161fb6b7';
 
-    function upNextLoadPostcards(which) {
+
+//var endpoint = 'http://ephemerasearch-staging.herokuapp.com/api'
+var endpoint = 'http://0.0.0.0:8000/api'
+
+function upNextLoadPostcards(which) {
     // console.log('userToken: ' + userToken);
     // console.log('upNextLoadPostcards:', which);
     // var urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true';
     // var urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&expand=images';
-    var urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&expand=images&limit=100';
+    var urlToLoad = endpoint + '/ephemera/?has_images=true&expand=images&limit=100';
 
-    // if (which == 'all') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true'; }
-    if (which == 'all') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&expand=images&limit=100'; }
-    // if (which == 'all') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&expand=images&limit=100'; }
+    if (which == 'all') { urlToLoad = endpoint + '/ephemera/?has_images=true&expand=images&limit=100'; }
 
-    // if (which == 'dates') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?needs_dates=true'; }
-    if (which == 'dates') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&has_dates=false&expand=images&limit=100'; }
+    if (which == 'dates') { urlToLoad = endpoint + '/ephemera/?has_images=true&has_dates=false&expand=images&limit=100'; }
 
-    // if (which == 'places') urltoload = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?needs_places=true';
-    if (which == 'places') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&has_places=false&expand=images&limit=100'; }
+    if (which == 'places') { urlToLoad = endpoint + '/ephemera/?has_images=true&has_places=false&expand=images&limit=100'; }
 
-    // if (which == 'languages') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?needs_languages=true'; }
-    if (which == 'languages') { urlToLoad = 'http://ephemerasearch-staging.herokuapp.com/api/ephemera/?has_images=true&has_languages=false&expand=images&limit=100'; }
+    if (which == 'languages') { urlToLoad = endpoint + '/ephemera/?has_images=true&has_languages=false&expand=images&limit=100'; }
 
     console.log(urlToLoad);
     $.ajax({
@@ -825,7 +824,7 @@ $(".form-field-input :input").each(function(){
                 inputData.text = inputVal;
                 // inputData.action = 'add';
 
-                postcardURL = 'http://ephemerasearch-staging.herokuapp.com/api/transcriptions/';
+                postcardURL = endpoint + '/transcriptions/';
                 // postcardDetail = 'http://ephemerasearch-staging.herokuapp.com/api/transcriptions/add/';
                 callType = 'POST';
             }
@@ -839,7 +838,7 @@ $(".form-field-input :input").each(function(){
                 inputData.text = inputVal;
                 // inputData.action = 'add';
 
-                postcardURL = 'http://ephemerasearch-staging.herokuapp.com/api/transcriptions/';
+                postcardURL = endpoint + '/transcriptions/';
                 // postcardDetail = 'http://ephemerasearch-staging.herokuapp.com/api/transcriptions/add/';
                 callType = 'POST';
             }
@@ -932,7 +931,7 @@ function setTxStatus(which) {
     // if (statusCheck != null) {
     if (postcardDetail != null && which != '' && which != null) {
         $.ajax({
-            url: "http://ephemerasearch-staging.herokuapp.com/api/ephemera/" + targetPostcardId[5] + "/set_tx_status/",
+            url: endpoint + "/ephemera/" + targetPostcardId[5] + "/set_tx_status/",
             // type: 'POST',
             type: 'PATCH',
             datatype: "json",
@@ -995,8 +994,7 @@ function submitTranscriptionStatus(which) {
     var sideCheck = null;
     if (sideCheck == null && postcardMessageVal != null && postcardMessageVal.length > 1 || which == 'illegible') {
         $.ajax({
-            // url: "http://ephemerasearch-staging.herokuapp.com/api/images/" + postcardSideId + "/",
-            url: "http://ephemerasearch-staging.herokuapp.com/api/images/" + postcardSideId + "/set_tx_status/",
+            url: endpoint + "/images/" + postcardSideId + "/set_tx_status/",
             type: "PATCH",
             datatype: "json",
             headers: {'Authorization': 'Token ' + userToken},
@@ -1047,7 +1045,7 @@ var placeArray = [];
 
 $(window).load(function getPlaces(){
     $.ajax({
-        url: 'http://ephemerasearch-staging.herokuapp.com/api/places/?limit=100',
+        url: endpoint + '/places/?limit=100',
         type: "GET",
         datatype: "json",
         headers: {'Authorization': 'Token ' + userToken},
@@ -1078,7 +1076,7 @@ var moreUsefulLangArray = {};
 
 $(window).load(function getLangauges(){
     $.ajax({
-        url: 'http://ephemerasearch-staging.herokuapp.com/api/languages/?limit=100',
+        url: endpoint + '/languages/?limit=100',
         type: "GET",
         datatype: "json",
         headers: {'Authorization': 'Token ' + userToken},
@@ -1209,7 +1207,7 @@ var tagArray = [];
 
 $(window).load(function getTags(){
     $.ajax({
-        url: 'http://ephemerasearch-staging.herokuapp.com/api/tags/?limit=100',
+        url: endpoint + '/tags/?limit=100',
         type: "GET",
         datatype: "json",
         headers: {'Authorization': 'Token ' + userToken},
@@ -1783,7 +1781,7 @@ function formFieldToggle(which) {
     // if (targetCheck == null) {
         if (postcardDetail != null && targetChecked == false && stopCall != true) {
             $.ajax({
-                url: "http://ephemerasearch-staging.herokuapp.com/api/ephemera/" + targetPostcardId[5] + "/set_tx_status/",
+                url: endpoint + "/ephemera/" + targetPostcardId[5] + "/set_tx_status/",
                 // type: "POST",
                 type: "PATCH",
                 datatype: "json",
@@ -1860,7 +1858,7 @@ function formFieldUnreadable(which) {
         // if (targetCheck == null) {
         if (postcardDetail != null) {
             $.ajax({
-                url: "http://ephemerasearch-staging.herokuapp.com/api/ephemera/" + targetPostcardId[5] + "/set_tx_status/",
+                url: endpoint + "/ephemera/" + targetPostcardId[5] + "/set_tx_status/",
                 // type: "POST",
                 type: "PATCH",
                 datatype: "json",
@@ -1908,7 +1906,7 @@ function fieldMarkEmpty() {
     // if (targetCheck == null) {
     if (postcardDetail != null) {
         $.ajax({
-            url: "http://ephemerasearch-staging.herokuapp.com/api/ephemera/" + targetPostcardId[5] + "/mark_empty/",
+            url: endpoint + "/ephemera/" + targetPostcardId[5] + "/mark_empty/",
             type: "POST",
             datatype: "json",
             headers: {'Authorization': 'Token ' + userToken},

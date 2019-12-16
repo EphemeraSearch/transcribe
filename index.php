@@ -18,9 +18,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/assets/common.php");
                 </ul>
                 <h2>Lastest ephemera</h2>
                 <ul class="lastest-ephemera">
-                    <? 
-                
-                    ?>
                     <li><a href="<?= '#' ?>">Postcard from Carpenter, Philip P. (Philip Pearsall) to Wm Lloyd Garrison, Esq'r.,, 1874</a></li>
                     <li><a href="<?= '#' ?>">Postcard from Maidene to Vesta Carlisle, 1944</a></li>
                     <li><a href="<?= '#' ?>">Postcard from Tiny Time to Martha Adams, 19*4</a></li>
